@@ -1,1 +1,1 @@
-imran ALL=(ALL) NOPASSWD: ALL 
+imran ALL= NOPASSWD:ALL 
