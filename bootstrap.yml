@@ -1,0 +1,66 @@
+
+
+---
+ 
+ - hosts: all
+   become: true
+   pre_tasks:
+ 
+   - name: install updates (CentOS)
+     tags: always
+     dnf:
+       update_only: yes
+       update_cache: yes
+     when: ansible_distribution == "CentOS"
+ 
+   - name: install updates (Ubuntu)
+     tags: always
+     apt:
+       upgrade: dist
+       update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+
+
+ - hosts: all
+   become: true
+   tasks:
+   - name: create imran user
+     tags: always
+     user:
+       name: imran
+       group: root
+
+
+
+   - name: add ssh key for imran
+     tags: always
+     authorized_key:
+       user: imran
+       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCq3XgMxSXJmNKEstuMDv7FfTqBCZE+Lm88FjDPQAIweWvjuIfKKDmM6cjvGViMTBTYmp5ZOejEY4XBXGD/SWhnqdFhLzxdh6DnGPVTFjrSd2/nyZYm79IMN2l+mlYgB6qU14a+0vHna3Azr62THiW1JAlIeopIqKdOvvBQJEx5C7HER28Cq6MjxujcpxnHkqcbrBpX3Dz1SyuOPwe9sq9J8s+g8Qqg792JV/MZSZ7ZSu5aXFncUu9BB87/g424+kOq8y6yeleUe4P32kdzNiEXj68paJdy84bIsyppHsEOLGZ4MCvLNVmQH5f5m7RthSOI8baMG6oo8EZmaBs4A/MGTh486CP7zj9wiZg51CzY7N/COLUX0Jwqj4JsbWueACx/4Nxo9l03HQwHAuBWnjRH9tCRs/tuRyokIaUOIend4FbRFEecJ6sehB/UUfp1Jf2p3zuEEaJ05GYOayzc/Cc4A1fvH1n7bOqNu5TPx7NjQC9ddu9y+ntimGgXvYaj8eGD8TQ7Hwcw2y1Zvjp/VT1PnSkIOwLqeyz0oQtIRXCvW2PllgrmNDh5C/wFcJyhe4DL9Oq7jkOkRUTsdU2AybrDowjgML7eWFU+ZLnkCgA/mxnfuuNADr89bAgH3nvDOyu6OqsL0Umx631MH9NPJH6gWUBa952V6nTY6XpicdCc6Q== imran@imran-Inspiron-5547" 
+
+   - name: add sudoers file for imran
+     tags: always
+     copy:
+       src: sudoer_imran
+       dest: /etc/sudoers.d/imran
+       owner: root
+       group: root
+       mode: 0440
+
+
+
+
+
+
+
+
+
+
+ 
+
+    
+ 
+
+
+

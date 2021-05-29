@@ -1,0 +1,4 @@
+- name: add ssh key for imran
+     authorized_key:
+       user: imran
+       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCq3XgMxSXJmNKEstuMDv7FfTqBCZE+Lm88FjDPQAIweWvjuIfKKDmM6cjvGViMTBTYmp5ZOejEY4XBXGD/SWhnqdFh>
